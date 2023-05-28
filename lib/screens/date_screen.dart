@@ -9,11 +9,28 @@ class DateScreen extends StatefulWidget {
   State<DateScreen> createState() => _DateScreenState();
 }
 
+List<String> months = [
+  'yanvar',
+  'fevral',
+  'mart',
+  'aprel',
+  'may',
+  'iyun',
+  'iyul',
+  'avqust',
+  'sentyabr',
+  'oktyabr',
+  'noyabr',
+  'dekabr'
+];
+String? _month;
+
 class _DateScreenState extends State<DateScreen> {
   @override
   Widget build(BuildContext context) {
+    print(_month);
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         MaterialButton(
           onPressed: _showDatePicker,
@@ -22,7 +39,9 @@ class _DateScreenState extends State<DateScreen> {
             child: Text('Günü seçin'),
           ),
         ),
-        Text('Bu günkü gün: ${widget.dataTime?.day.toString()}')
+        _month != null
+            ? Text('Seçdiyin gün: $_month ${widget.dataTime?.day.toString()}')
+            : const Text('')
       ],
     );
   }
@@ -36,6 +55,13 @@ class _DateScreenState extends State<DateScreen> {
         .then((value) {
       setState(() {
         widget.dataTime = value!;
+        months.asMap().forEach((index, month) {
+          if (index == widget.dataTime!.month.toInt() - 1) {
+            print(month);
+            _month = month;
+          }
+          ;
+        });
       });
     });
   }
