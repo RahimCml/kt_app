@@ -1,13 +1,16 @@
 part of 'patient_bloc.dart';
 
+enum PatientStatus{
+  initial,
+  loading,
+  loaded,
+}
 @immutable
-abstract class PatientState {}
-
-class PatientInitial extends PatientState {}
-
-class PatientAddSuccess extends PatientState {
-  final PatientModel patientInfo;
-  PatientAddSuccess({
-    required this.patientInfo,
+class PatientState {
+    final List<PatientModel> patientInfo;
+    final PatientStatus status;
+   const PatientState({
+    this.patientInfo= const <PatientModel>[],
+    this.status = PatientStatus.initial
   });
 }

@@ -4,8 +4,14 @@ part of 'patient_bloc.dart';
 abstract class PatientEvent {}
 
 class PatientAddEvent extends PatientEvent {
-  final PatientModel patientModel;
-
-  PatientAddEvent({required this.patientModel});
+  final String name;
+  final String surName;
+  final int number;
+  final DateTime dateTime;
+  PatientAddEvent({
+    required this.name,
+    required this.surName,
+    required this.number,
+    required this.dateTime,
+  });
 }
-
