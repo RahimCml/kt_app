@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kt_app/screens/date_screen.dart';
+import 'package:kt_app/screens/patient_screen.dart';
 import 'package:kt_app/screens/widgets/floating_action_button.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DateScreen(),
+            const PatientScreen()
           ],
         ),
       ),
