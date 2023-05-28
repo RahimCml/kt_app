@@ -12,15 +12,25 @@ class PatientScreen extends StatefulWidget {
 class _PatientScreenState extends State<PatientScreen> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        BlocBuilder<PatientBloc, PatientState>(builder: (context, state) {
-          if(state is PatientAddSuccess) {
-            return Text(state.patientInfo.name.toString(), style: const TextStyle(fontSize: 20));
-          }
-          return  const SizedBox(height: 20,);
-        })
-      ],
+    return BlocBuilder<PatientBloc, PatientState>(
+      builder: (context, state) {
+        if (state.status == PatientStatus.loaded) {
+          return Expanded(
+            child: ListView.builder(
+              itemCount: state.patientInfo.length,
+              itemBuilder: (context, index) {
+                return Text(
+                  state.patientInfo[index].name,
+                  style: const TextStyle(fontSize: 20),
+                );
+              },
+            ),
+          );
+        }else if(state.status == PatientStatus.loading){
+        return const Center(child:CircularProgressIndicator());
+        }
+        return const SizedBox(height: 12,);
+      },
     );
   }
 }

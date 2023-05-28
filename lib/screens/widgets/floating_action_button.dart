@@ -81,15 +81,11 @@ class _FloatingActionBottomWidgetState
                     onPressed: () {
                       final int number =
                           int.tryParse(numberController.text) ?? 0;
-                      final patientModel = PatientModel(
-                        name: titleController.text,
-                        surName: subtitleController.text,
-                        number: number, // Pass the converted number as int
-                        dateTime: nowTime,
-                      );
-                      context
-                          .read<PatientBloc>()
-                          .add(PatientAddEvent(patientModel: patientModel));
+                      context.read<PatientBloc>().add(PatientAddEvent(
+                          dateTime: nowTime,
+                          name: titleController.text,
+                          number: number,
+                          surName: subtitleController.text));
                       titleController.clear();
                       subtitleController.clear();
                       numberController.clear();
