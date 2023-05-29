@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../nowTimeBloc/now_time_bloc.dart';
+
 
 class DateScreen extends StatefulWidget {
-  DateTime? dataTime = DateTime.now();
-
-  DateScreen({super.key, this.dataTime});
+  // use bloc in order to use that
+  const DateScreen({super.key});
 
   @override
   State<DateScreen> createState() => _DateScreenState();
 }
+  DateTime dataTime = DateTime.now();
 
 List<String> months = [
   'yanvar',
@@ -40,7 +44,7 @@ class _DateScreenState extends State<DateScreen> {
           ),
         ),
         _month != null
-            ? Text('Seçdiyin gün: $_month ${widget.dataTime?.day.toString()}')
+            ? Text('Seçdiyin gün: $_month ${dataTime.day.toString()}')
             : const Text('')
       ],
     );
@@ -54,9 +58,10 @@ class _DateScreenState extends State<DateScreen> {
             lastDate: DateTime(2024))
         .then((value) {
       setState(() {
-        widget.dataTime = value!;
+        dataTime = value!;
+        context.read<NowTimeBloc>().add(UpdateNowTimeEvent(dataTime));
         months.asMap().forEach((index, month) {
-          if (index == widget.dataTime!.month.toInt() - 1) {
+          if (index == dataTime.month.toInt() - 1) {
             print(month);
             _month = month;
           }
