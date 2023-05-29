@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kt_app/bloc/patient_bloc.dart';
-import 'package:kt_app/models/patient_model.dart';
+import '../../nowTimeBloc/now_time_bloc.dart';
+import '../../patientBloc/patient_bloc.dart';
 
 class FloatingActionBottomWidget extends StatefulWidget {
-  const FloatingActionBottomWidget({Key? key}) : super(key: key);
+  FloatingActionBottomWidget({super.key});
 
   @override
   _FloatingActionBottomWidgetState createState() =>
@@ -16,8 +16,6 @@ class _FloatingActionBottomWidgetState
   late final TextEditingController titleController;
   late final TextEditingController subtitleController;
   late final TextEditingController numberController;
-  DateTime nowTime = DateTime.now();
-
   @override
   void initState() {
     super.initState();
@@ -50,6 +48,7 @@ class _FloatingActionBottomWidgetState
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
       builder: (context) {
+NowTimeBloc nowTimeBloc = BlocProvider.of<NowTimeBloc>(context);
         return ListView(
           shrinkWrap: true,
           children: [
@@ -82,7 +81,7 @@ class _FloatingActionBottomWidgetState
                       final int number =
                           int.tryParse(numberController.text) ?? 0;
                       context.read<PatientBloc>().add(PatientAddEvent(
-                          dateTime: nowTime,
+                          dateTime: nowTimeBloc.state.nowTime,
                           name: titleController.text,
                           number: number,
                           surName: subtitleController.text));

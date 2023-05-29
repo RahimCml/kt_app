@@ -8,20 +8,18 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime nowTime = DateTime.now();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 103, 101, 101),
         title: const Text('KT Qeydiyyat'),
       ),
-      floatingActionButton: const FloatingActionBottomWidget(),
+      floatingActionButton: FloatingActionBottomWidget(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            DateScreen(),
-            const PatientScreen()
-          ],
+          children: const [DateScreen(), PatientScreen()],
         ),
       ),
     );

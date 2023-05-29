@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kt_app/bloc/patient_bloc.dart';
+import '../patientBloc/patient_bloc.dart';
 
 class PatientScreen extends StatefulWidget {
   const PatientScreen({super.key});
@@ -19,8 +19,8 @@ class _PatientScreenState extends State<PatientScreen> {
             child: ListView.builder(
               itemCount: state.patientInfo.length,
               itemBuilder: (context, index) {
-                return Text(
-                  state.patientInfo[index].name,
+                return  Text(
+                  state.patientInfo[index].dateTime.toString(),
                   style: const TextStyle(fontSize: 20),
                 );
               },
