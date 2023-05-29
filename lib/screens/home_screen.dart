@@ -8,7 +8,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime nowTime = DateTime.now();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 103, 101, 101),
