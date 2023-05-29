@@ -4,13 +4,13 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-import '../models/patient_model.dart';
+import '../../models/patient_model.dart';
 
 part 'patient_event.dart';
 part 'patient_state.dart';
 
 class PatientBloc extends Bloc<PatientEvent, PatientState> {
-  PatientBloc() : super(const PatientState()) {
+  PatientBloc() : super(const PatientState(),) {
     on<PatientAddEvent>(_onAddPatient);
   }
 
@@ -22,7 +22,7 @@ class PatientBloc extends Bloc<PatientEvent, PatientState> {
       name: event.name,
       surName: event.surName,
       number: event.number,
-      dateTime: event.dateTime,
+      dateTime: event.dateTime!,
     );
     final patientList = List<PatientModel>.from(state.patientInfo);
     patientList.add(result);

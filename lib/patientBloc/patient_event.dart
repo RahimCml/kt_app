@@ -7,11 +7,12 @@ class PatientAddEvent extends PatientEvent {
   final String name;
   final String surName;
   final int number;
-  final DateTime dateTime;
+  final DateTime? dateTime;
   PatientAddEvent({
     required this.name,
     required this.surName,
     required this.number,
-    required this.dateTime,
+    this.dateTime,
   });
 }
+
