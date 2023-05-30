@@ -5,7 +5,6 @@ import '../nowTimeBloc/now_time_bloc.dart';
 
 
 class DateScreen extends StatefulWidget {
-  // use bloc in order to use that
   const DateScreen({super.key});
 
   @override
@@ -32,7 +31,6 @@ String? _month;
 class _DateScreenState extends State<DateScreen> {
   @override
   Widget build(BuildContext context) {
-    print(_month);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

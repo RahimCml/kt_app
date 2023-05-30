@@ -9,19 +9,21 @@ class PatientScreen extends StatefulWidget {
   @override
   State<PatientScreen> createState() => _PatientScreenState();
 }
+bool loading = false;
 
 class _PatientScreenState extends State<PatientScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PatientBloc, PatientState>(
       builder: (context, state) {
-        NowTimeBloc nowTimeBloc = BlocProvider.of<NowTimeBloc>(context);
-        if (state.status == PatientStatus.loaded) {
+        DateTime? nowTime = context.watch<NowTimeBloc>().state.nowTime;
+        if (nowTime != null) {
+          loading = true;
           return Expanded(
             child: ListView.builder(
               itemCount: state.patientInfo.length,
               itemBuilder: (context, index) {
-                return nowTimeBloc.state.nowTime ==
+                return nowTime ==
                         state.patientInfo[index].dateTime
                     ? Text(
                         state.patientInfo[index].dateTime.toString(),
