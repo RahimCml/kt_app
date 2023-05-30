@@ -27,6 +27,5 @@ class PatientBloc extends Bloc<PatientEvent, PatientState> {
     final patientList = List<PatientModel>.from(state.patientInfo);
     patientList.add(result);
     emit(PatientState(patientInfo: patientList, status: PatientStatus.loaded));
-
   }
 }

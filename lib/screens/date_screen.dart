@@ -42,7 +42,10 @@ class _DateScreenState extends State<DateScreen> {
           ),
         ),
         _month != null
-            ? Text('Seçdiyin gün: $_month ${dataTime.day.toString()}')
+            ? Padding(
+              padding: const EdgeInsets.only(right: 16,),
+              child: Text('Seçdiyin gün: $_month ${dataTime.day.toString()}'),
+            )
             : const Text('')
       ],
     );

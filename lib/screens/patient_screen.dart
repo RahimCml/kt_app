@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../nowTimeBloc/now_time_bloc.dart';
@@ -21,14 +22,29 @@ class _PatientScreenState extends State<PatientScreen> {
           loading = true;
           return Expanded(
             child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.all(12),
               itemCount: state.patientInfo.length,
               itemBuilder: (context, index) {
+                int queue = index + 1;
                 return nowTime ==
                         state.patientInfo[index].dateTime
-                    ? Text(
-                        state.patientInfo[index].dateTime.toString(),
-                        style: const TextStyle(fontSize: 20),
-                      )
+                    ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                            '$queue. ${state.patientInfo[index].name.toString()}',
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                        MaterialButton(onPressed: (){
+                          state.patientInfo.removeAt(index);
+                          setState(() {
+                          });
+                        }, child: const Icon(Icons.delete, color: Color.fromARGB(255, 205, 90, 82),),)
+                      ],
+                    )
                     : Container(
                         color: Colors.red,
                       );
